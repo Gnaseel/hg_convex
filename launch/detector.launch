@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+
+    <!-- <node pkg="detector" name="register" type="register" output="screen"/> -->
+    <node pkg="detector" name="register" type="register"/>
+    <node pkg="detector" name="convex" type="convex" output="screen"/>
+    <node pkg="rviz" name="rviz_detector" type="rviz" args="-d $(find detector)/rviz/detector.rviz"/> 
+</launch>
