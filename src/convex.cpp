@@ -139,7 +139,6 @@ void quickSortByAngle(int first, int last, Point *p)
 
 int convexHudouble(Point *p, int size)
 {
-	cout<<"INXONVEX"<<endl;
     int stack[MAX_POINT];
 	double minX = 1000000000, minY = 1000000000;
     int minIdx = 0;
@@ -182,11 +181,11 @@ int convexHudouble(Point *p, int size)
         // cout<<"idx = "<<idx<<" next "<<next-1<<endl;
 
 	}
-	convec_publish(p, stack, idx);
+	// convec_publish(p, stack, idx);
 	geometry_msgs::PoseArray arr;
 
 
-	for(int i=0;i<size;i++){
+	for(int i=0;i<idx+1;i++){
 		visualization_msgs::Marker marker;
 		geometry_msgs::Pose pose;
 
@@ -211,11 +210,8 @@ void cons_callback(const geometry_msgs::PoseArray::ConstPtr msg){
     int size=0;
     Point p[MAX_POINT];
 	for(int i=0;i<msg->poses.size();i++){
-		cout<<"ASDFDSF   "<<i<<endl;
 		double x =msg->poses[i].position.x; 
 		double y =msg->poses[i].position.y; 
-		if(sqrt(x*x+y*y) > 10) continue;
-		if(x<0) continue;
         p[size].x= x;
         p[size].y= y;
         size++;
